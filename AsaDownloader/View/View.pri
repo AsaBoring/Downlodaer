@@ -14,3 +14,5 @@ include(FuncDetail/FuncDetail.pri)
 
 RESOURCES += \
     $$PWD/viewresource.qrc
+
+DISTFILES +=

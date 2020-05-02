@@ -9,14 +9,13 @@ MainMenu::MainMenu(QWidget *parent)
 
 MainMenu::~MainMenu()
 {
-    if(up_frame != NULL){delete up_frame;}
-    if(down_frame != NULL){delete down_frame;}
-    if(v_down_layout != NULL){delete v_down_layout;}
-    if(btn_deleted != NULL){delete btn_deleted;}
-    if(btn_download != NULL){delete btn_download;}
-    if(btn_finished != NULL){delete btn_finished;}
-    if(btn_deleted != NULL){delete btn_deleted;}
-
+    if(up_frame != NULL){up_frame->deleteLater();}
+    if(down_frame != NULL){ down_frame->deleteLater();}
+    if(v_down_layout != NULL){v_down_layout->deleteLater();}
+    if(btn_deleted != NULL){btn_deleted->deleteLater();}
+    if(btn_download != NULL){btn_download->deleteLater();}
+    if(btn_finished != NULL){btn_finished->deleteLater();}
+    if(btn_deleted != NULL){btn_deleted->deleteLater();}
 }
 
 void MainMenu::initSetting()

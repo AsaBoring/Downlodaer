@@ -6,5 +6,12 @@
         <file>ViewResource/item_finished_normal.png</file>
         <file>ViewResource/btn_close_normal.png</file>
         <file>ViewResource/btn_min_normal.png</file>
+        <file>ViewResource/btn_delete_normal.png</file>
+        <file>ViewResource/btn_new_normal.png</file>
+        <file>ViewResource/btn_setting_normal.png</file>
+        <file>ViewResource/btn_start_normal.png</file>
+        <file>ViewResource/btn_stop_normal.png</file>
+        <file>ViewResource/lb_blankImage.png</file>
+        <file>ViewResource/funcDetail_listwidget.qss</file>
     </qresource>
 </RCC>

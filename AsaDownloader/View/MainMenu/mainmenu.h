@@ -10,7 +10,7 @@ public:
     MainMenu(QWidget *parent = 0);
     ~MainMenu();
 
-public:
+private:
     QFrame * up_frame = NULL;
     QFrame * down_frame = NULL;
 
@@ -23,13 +23,17 @@ public:
 
     ShadowButton * pointer_dark_btn = NULL;
 
-private:
     void initSetting();
     void initLayout();
 
     QList<ShadowButton *> ptrMenuBtnList;
 public slots:
     void slotSetOtherBtnNormal(ShadowButton * paraPtr);
+
+    inline ShadowButton * fetchBtnDownloadPtr(){return btn_download;}
+    inline ShadowButton * fetchBtnFinishPtr(){return btn_finished;}
+    inline ShadowButton * fetchBtnDeletePtr(){return btn_deleted;}
+
 };
 
 #endif // MAINMENU_H

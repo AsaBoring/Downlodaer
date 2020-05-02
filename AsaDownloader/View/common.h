@@ -1,18 +1,41 @@
 #ifndef COMMON_H
 #define COMMON_H
 
+#include <QFile>
 #include <QIcon>
 #include <QSize>
+#include <cmath>
+#include <QTimer>
 #include <QFrame>
 #include <QImage>
 #include <QLabel>
 #include <QDebug>
 #include <QPixmap>
+#include <QThread>
+#include <iostream>
+#include <QLineEdit>
+#include <QClipboard>
+#include <QScrollBar>
+#include <QToolButton>
+#include <QListWidget>
+#include <QScrollArea>
+#include <QMessageBox>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
+#include <QGridLayout>
 #include <QMouseEvent>
 #include <QPushButton>
 #include <QMainWindow>
+#include <QProgressBar>
+#include <QApplication>
+#include <QNetworkReply>
+#include <QListWidgetItem>
+#include <QNetworkRequest>
+#include <QNetworkAccessManager>
+
+#define uint64_asa unsigned __int64
+
+using namespace std;
 
 /*main window*/
 #define MAIN_WINDOW_WID 940
@@ -40,7 +63,7 @@
 #define MENU_TEXT_FINISHED tr("已完成")
 #define MENU_TEXT_DEELTED tr("垃圾箱")
 
-/*func detail*/
+/*func detail toolbar*/
 #define FUNC_DETAIL_TOOLBAR_WID 740
 #define FUNC_DETAIL_TOOLBAR_HEI 70
 #define FUNC_DETAIL_TOOLBAR_UP_FRAME_WID 740
@@ -53,6 +76,57 @@
 #define FUNC_DETAIL_TOOLBAR_BTN_MIN_WID 25
 #define FUNC_DETAIL_TOOLBAR_BTN_MIN_HEI 20
 #define FUNC_DETAIL_TOOLBAR_BTN_MIN_ICON_SIZE 12
+#define FUNC_DETAIL_TOOLBAR_BTN_NEW_WID 70
+#define FUNC_DETAIL_TOOLBAR_BTN_NEW_HEI 35
+#define FUNC_DETAIL_TOOLBAR_BTN_NEW_ICON_WID 63
+#define FUNC_DETAIL_TOOLBAR_BTN_NEW_ICON_HEI 27
+#define FUNC_DETAIL_TOOLBAR_BTN_START_WID 35
+#define FUNC_DETAIL_TOOLBAR_BTN_START_HEI 35
+#define FUNC_DETAIL_TOOLBAR_BTN_START_ICON_SIZE 28
+#define FUNC_DETAIL_TOOLBAR_BTN_STOP_WID 35
+#define FUNC_DETAIL_TOOLBAR_BTN_STOP_HEI 35
+#define FUNC_DETAIL_TOOLBAR_BTN_STOP_ICON_SIZE 28
+#define FUNC_DETAIL_TOOLBAR_BTN_DELETE_WID 35
+#define FUNC_DETAIL_TOOLBAR_BTN_DELETE_HEI 35
+#define FUNC_DETAIL_TOOLBAR_BTN_DELETE_ICON_SIZE 28
+#define FUNC_DETAIL_TOOLBAR_BTN_SETTING_WID 35
+#define FUNC_DETAIL_TOOLBAR_BTN_SETTING_HEI 35
+#define FUNC_DETAIL_TOOLBAR_BTN_SETTING_ICON_SIZE 28
+
+/*func detail download frame*/
+#define FUNC_DETAIL_DOWNLOAD_FRAME_WID 400
+#define FUNC_DETAIL_DOWNLOAD_FRAME_HEI 200
+#define FUNC_DETAIL_DOWNLOAD_EDIT_WID 200
+#define FUNC_DETAIL_DOWNLOAD_EDIT_HEI 30
+#define FUNC_DETAIL_DOWNLOAD_BTN_CLICK_WID 70
+#define FUNC_DETAIL_DOWNLOAD_BTN_CLICK_HEI 30
+#define FUNC_DETAIL_DOWNLOAD_BTN_TEXT tr("确定")
+#define FUNC_DETAIL_DOWNLOAD_STYLE "FuncDetailNewDownload{border:1px solid black;\
+                                                          background-color:rgba(255,255,255,180)}"
+
+
+/*func detail download frame*/
+#define FUNC_DETAIL_ITEM_WID FUNC_DETAIL_WID
+#define FUNC_DETAIL_ITEM_HEI 70
+#define FUNC_DETAIL_ITEM_PIC_WID 50
+#define FUNC_DETAIL_ITEM_PIC_HEI 50
+#define FUNC_DETAIL_ITEM_FILE_INFO_WID 600
+#define FUNC_DETAIL_ITEM_FILE_INFO_HEI 70
+#define FUNC_DETAIL_ITEM_DOWNLOAD_INFO_WID 140
+#define FUNC_DETAIL_ITEM_DOWNLOAD_INFO_HEI 70
+#define FUNC_DETAIL_ITEM_PROGRESSBAR_WID 140
+#define FUNC_DETAIL_ITEM_PROGRESSBAR_HEI 13
+#define FUNC_DETAIL_ITEM_DOWNLOAD_INFO_DOWN_HEI 25
+#define FUNC_DETAIL_ITEM_STATUS_WID 100
+#define FUNC_DETAIL_ITEM_STATUS_HEI 70
+
+
+enum DOWNLOAD_STATUS{
+    DOWNLOAD_RUNNING = 0,
+    DOWNLOAD_STOP = 1,
+    DOWNLOAD_DOWN = 2,
+    DOWNLOAD_ERROR = 3
+};
 
 class AsaBaseFrame : public QPushButton
 {
@@ -122,6 +196,30 @@ public slots:
     inline void setClickShadow(bool para){m_isAllowClickShadow = para;}
 signals:
     void sendClicked(ShadowButton * paraPtr);
-
 };
+
+/*test dowonload progress bar*/
+class tThread : public QThread
+{
+    Q_OBJECT
+public:
+    tThread(QObject *parent = nullptr);
+
+private:
+    bool is_run = true;
+
+protected:
+    void run();
+
+public:
+    inline stop_run(){is_run = false;}
+    inline start_run(){is_run = true;}
+
+signals:
+    void sendPercent(int n);
+    void sendFinish();
+};
+
+QString formatFileSize(uint64_asa bytesEg);
+
 #endif // COMMON_H

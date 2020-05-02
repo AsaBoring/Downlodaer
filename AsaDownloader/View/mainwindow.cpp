@@ -9,22 +9,21 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
-    if(main_frame != NULL){delete main_frame;}
-    if(main_menu != NULL){delete main_menu;}
-    if(func_detail != NULL){delete func_detail;}
-    if(h_main_layout != NULL){delete h_main_layout;}
-
+    if(main_frame != NULL){main_frame->deleteLater();}
+    if(main_menu != NULL){main_menu->deleteLater();}
+    if(func_detail != NULL){func_detail->deleteLater();}
+    if(h_main_layout != NULL){h_main_layout->deleteLater();}
 }
 
 void MainWindow::initSetting()
 {
     setWindowFlags(Qt::FramelessWindowHint);
+    setFixedSize(MAIN_WINDOW_WID,MAIN_WINDOW_HEI);
 }
 
 void MainWindow::initLayout()
 {
     /*set main window*/
-    setFixedSize(MAIN_WINDOW_WID,MAIN_WINDOW_HEI);
 
     /*set frame*/
     main_frame = new AsaBaseFrame(this);
