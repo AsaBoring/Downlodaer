@@ -49,7 +49,7 @@ public:
 
 public slots:
     void slotSetFileName(QString strFileName);
-    void slotSetFileSize(uint64_asa nSize);   //byte
+    void slotSetFileSize(uint64_t nSize);   //byte
     void slotSetDownloadTime(QString strTime);
     void slotSetDownloadSpeed(int nSpeed);
     void slotSetStatus(DOWNLOAD_STATUS n);          //0 正在下载 , 1暂停下载 ， 2下载完成 , 3异常错误

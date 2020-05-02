@@ -167,7 +167,7 @@ void FuncDetailListItem::slotSetFileName(QString strFileName)
     btn_name->setText(str_fileName);
 }
 
-void FuncDetailListItem::slotSetFileSize(unsigned long long nSize)
+void FuncDetailListItem::slotSetFileSize(uint64_t nSize)
 {
     QString strFileSize = formatFileSize(nSize);
     btn_fileSize->setText(strFileSize);

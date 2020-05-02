@@ -33,8 +33,6 @@
 #include <QNetworkRequest>
 #include <QNetworkAccessManager>
 
-#define uint64_asa unsigned __int64
-
 using namespace std;
 
 /*main window*/
@@ -212,14 +210,14 @@ protected:
     void run();
 
 public:
-    inline stop_run(){is_run = false;}
-    inline start_run(){is_run = true;}
+    inline void stop_run(){is_run = false;}
+    inline void start_run(){is_run = true;}
 
 signals:
     void sendPercent(int n);
     void sendFinish();
 };
 
-QString formatFileSize(uint64_asa bytesEg);
+QString formatFileSize(uint64_t bytesEg);
 
 #endif // COMMON_H

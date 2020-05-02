@@ -219,7 +219,7 @@ void tThread::run()
 
 /*---------------------------------------------------------------------*/
 
-QString formatFileSize(unsigned long long bytesEg)
+QString formatFileSize(uint64_t bytesEg)
 {
     vector<string> vec;
     vec.push_back("B");
@@ -229,20 +229,20 @@ QString formatFileSize(unsigned long long bytesEg)
     vec.push_back("TB");
     vec.push_back("PB");
 
-    uint64_asa nRemainder = 0;
+    uint64_t nRemainder = 0;
     double nKeyValue  = 1024.0;
-    uint64_asa nByteSize = bytesEg;
+    uint64_t nByteSize = bytesEg;
     int i = 0;
 
     while (nByteSize >= nKeyValue && i < vec.size())
     {
-        nRemainder = (uint64_asa)nByteSize % (uint64_asa)nKeyValue;
+        nRemainder = (uint64_t)nByteSize % (uint64_t)nKeyValue;
         nByteSize = nByteSize/nKeyValue;   //nByteSize /= nKeyValue
         i++;
     }
 
     nByteSize = floor(nByteSize);
-    string strResult = to_string((uint64_asa)nByteSize);
+    string strResult = to_string((uint64_t)nByteSize);
     if(nRemainder > 0)
     {
        strResult += "." + to_string(nRemainder).substr(0,2);
